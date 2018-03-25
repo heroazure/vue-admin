@@ -122,6 +122,13 @@
           <Icon type="ios-cog" :size="iconSize" :title="isFold?'设置':''"></Icon>
           <span v-show="!isFold">设置</span>
         </Menu-item>
+        <Submenu name="0">
+          <template slot="title">
+            <Icon type="ios-paper" :size="iconSize"></Icon>
+            组件测试
+        </template>
+          <Menu-item name="/chart">图标组件</Menu-item>
+        </Submenu>
       </Menu>
     </div>
     <div class="layout-content" :class="{active:isFold}">
@@ -166,7 +173,9 @@
       return {
         userName: '',
         paths: [
-          {id: '-1', urls: ['/shopgeneral', '/goods', '/shop', '/message', '/customer', '/config']},// -1为假设的特殊id，表示一级菜单
+          // -1为假设的特殊id，表示一级菜单
+          {id: '-1', urls: ['/shopgeneral', '/goods', '/shop', '/message', '/customer', '/config']},
+          {id: '0', urls: ['/chart']}
           /*{id: '4', urls: ['/resourcecates', '/resource', '/coupon']},
           {id: '5', urls: ['/order']},
           {id: '6', urls: ['/feedback']}*/

@@ -29,6 +29,9 @@ let Customer = (resolve) => require(['views/customer/Index.vue'], resolve)
 //设置
 let Config = (resolve) => require(['views/config/Index.vue'], resolve)
 
+// 组件测试
+let Chart = (resolve) => require(['views/chart/Index.vue'], resolve)
+
 let routes = [
   {
     path: '/login',
@@ -114,7 +117,15 @@ let routes = [
           title: '设置'
         },
         component: Config
-      }
+      },
+      {
+        path: 'chart',
+        name: 'chart',
+        meta: {
+          title: '图标组件'
+        },
+        component: Chart
+      },
     ]
   }
 ]

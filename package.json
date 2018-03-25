@@ -16,6 +16,7 @@
   "dependencies": {
     "axios": "^0.16.2",
     "dragula": "^3.7.2",
+    "echarts": "^4.0.4",
     "iview": "^2.5.1",
     "vue": "^2.5.2",
     "vue-quill-editor": "^2.3.0",
