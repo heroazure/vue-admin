@@ -3,7 +3,6 @@
  */
 import axios from 'axios'
 import iview from 'iview'
-import storage from 'util/storage'
 const timeout = 8000
 
 // axios.defaults.baseURL = '/index.php/admin'
@@ -23,12 +22,6 @@ export default ({
     method: method,
     timeout: timeout// 默认超时时间
   }
-  const token=storage.getToken()
-  if(token){
-    option.headers={
-      token:token
-    }
-  }
   option[method === 'get' ? 'params' : 'data'] = data
 
   option = Object.assign({}, option, config)
@@ -36,7 +29,7 @@ export default ({
     axios(option).then(({data}) => {
       if (!selfHandleMsg) {
         if (data.status.code !== 0) {
-          //登录失效
+          // 登录失效
           if (data.status.code === 403) {
             location.replace('/login')
           } else {

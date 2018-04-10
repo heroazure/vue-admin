@@ -1,8 +1,9 @@
 <style scoped lang="less">
-  @import "./assets/css/base/fn";
+  @import "~@base/fn";
 
-  @min-width: 800px;
+  @min-width: 1000px;
   @menu-width: 150px;
+  @header-height: 60px;
   .layout {
     position: fixed;
     left: 0;
@@ -11,8 +12,8 @@
     bottom: 0;
     background-color: #fff;
     &-logo-left {
-      height: 50px;
-      line-height: 50px;
+      height: @header-height;
+      line-height: @header-height;
       color: #fff;
       font-size: 20px;
       padding-left: 30px;
@@ -43,10 +44,10 @@
       &-header {
         width: 100%;
         min-width: @min-width;
-        background-color: #fff;
+        background-color: #464c5b;
         border-bottom: 1px solid rgba(0, 0, 0, .1);
-        flex: 0 0 50px;
-        height: 50px;
+        flex: 0 0 @header-height;
+        height: @header-height;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -97,45 +98,39 @@
     <div class="layout-menus" :class="{active:isFold}">
       <Menu theme="dark" :active-name="activeMenu.activeName" :open-names="activeMenu.openNames" width="auto"
             @on-select="onTapMenu" accordion>
-        <div class="layout-logo-left"><span v-show="!isFold">趣淘笔</span></div>
-        <Menu-item name="/shopgeneral">
-          <Icon type="arrow-graph-up-right" :size="iconSize" :title="isFold?'店铺概况':''"></Icon>
-          <span v-show="!isFold">店铺概况</span>
-        </Menu-item>
-        <Menu-item name="/goods">
-          <Icon type="edit" :size="iconSize" :title="isFold?'商品管理':''"></Icon>
-          <span v-show="!isFold">商品管理</span>
-        </Menu-item>
-        <Menu-item name="/shop">
-          <Icon type="briefcase" :size="iconSize" :title="isFold?'店铺管理':''"></Icon>
-          <span v-show="!isFold">店铺管理</span>
-        </Menu-item>
-        <Menu-item name="/message">
-          <Icon type="speakerphone" :size="iconSize" :title="isFold?'消息管理':''"></Icon>
-          <span v-show="!isFold">消息管理</span>
-        </Menu-item>
-        <Menu-item name="/customer">
-          <Icon type="person-stalker" :size="iconSize" :title="isFold?'客户管理':''"></Icon>
-          <span v-show="!isFold">客户管理</span>
-        </Menu-item>
-        <Menu-item name="/config">
-          <Icon type="ios-cog" :size="iconSize" :title="isFold?'设置':''"></Icon>
-          <span v-show="!isFold">设置</span>
-        </Menu-item>
+        <div class="layout-logo-left"><span v-show="!isFold">商家决策</span></div>
+        <template v-for="(item, index) in paths">
+          <template v-if="item.id === '-1'">
+            <Menu-item :name="im.path" v-for="(im,idx) in item.urls" :key="idx">
+              <Icon :type="im.icon" :size="iconSize" :title="isFold?im.title:''"></Icon>
+              <span v-show="!isFold">{{im.title}}</span>
+            </Menu-item>
+          </template>
+          <template v-else>
+            <Submenu :name="item.id">
+              <template slot="title">
+                <Icon :type="item.icon" :size="iconSize"></Icon>
+                {{item.title}}
+              </template>
+              <Menu-item :name="im.path" v-for="(im, idx) in item.urls" :key="idx">{{im.title}}</Menu-item>
+            </Submenu>
+          </template>
+        </template>
       </Menu>
     </div>
     <div class="layout-content" :class="{active:isFold}">
       <div class="layout-content-header">
         <div class="left">
-          <Icon type="navicon-round"
+          <!--<Icon type="navicon-round"
                 class="pointer"
                 :style="foldStyle"
+                style="color: #fff;"
                 :size="20"
-                @click.native="onFoldMenus"></Icon>
+                @click.native="onFoldMenus"></Icon>-->
         </div>
         <div class="right">
           <Dropdown placement="bottom-end" @on-click="onToggleHeader">
-            <img class="user-header" :src="require('assets/img/hot.jpg')" alt="商家头像">
+            <img class="user-header" :src="require('@assets/img/hot.jpg')" alt="商家头像">
             <DropdownMenu slot="list">
               <DropdownItem name="0">{{userName}}</DropdownItem>
               <DropdownItem name="1" divided>退出</DropdownItem>
@@ -145,13 +140,17 @@
       </div>
       <div class="layout-content-main">
         <div class="layout-content-main-wrap">
+          <!--页面默认都是缓存的，只有当meta.keepAlive===false时不缓存-->
           <transition name="main">
             <keep-alive>
-              <router-view></router-view>
+              <router-view v-if="$route.meta.keepAlive===undefined||$route.meta.keepAlive===true"></router-view>
             </keep-alive>
           </transition>
+          <transition name="main">
+            <router-view v-if="$route.meta.keepAlive===false"></router-view>
+          </transition>
           <div class="layout-content-copyright">
-            2017-2022 &copy; heroxiao
+            2018-2022 &copy; JollyChic
           </div>
         </div>
       </div>
@@ -159,75 +158,58 @@
   </div>
 </template>
 <script>
-  import storage from 'util/storage'
-  import loginApi from 'service/system'
+  import storage from '@util/storage'
+  import loginApi from '@service/system'
+  import menu from './menu'
   export default {
     data () {
       return {
         userName: '',
-        paths: [
-          {id: '-1', urls: ['/shopgeneral', '/goods', '/shop', '/message', '/customer', '/config']},// -1为假设的特殊id，表示一级菜单
-          /*{id: '4', urls: ['/resourcecates', '/resource', '/coupon']},
-          {id: '5', urls: ['/order']},
-          {id: '6', urls: ['/feedback']}*/
-        ],
-        isFold: false
+        paths: menu.paths,
+        isFold: false,
+        activeMenu: {}
       }
     },
     computed: {
       iconSize () {
         return 18
       },
-      foldStyle(){
+      foldStyle () {
         return {
           'transform': 'rotateZ(' + (this.isFold ? 90 : 0) + 'deg)',
           'transition': 'transform .3s ease'
         }
-      },
-      activeMenu(){
-        let path = this.$route.path
-        let obj = {}
-        try {
-          this.paths.forEach(item => {
-            try {
-              item.urls.forEach(im => {
-                if (path.indexOf(im) === 0) {
-                  obj.openNames = [item.id]
-                  obj.activeName = im
-                  throw new Error('break')
-                }
-              })
-            } catch (e) {
-              throw e
-            }
-          })
-        } catch (e) {
-        }
-        return obj
       }
     },
-    mounted(){
-      /*let userName=storage.getUserName()
+    mounted () {
+      /* let userName=storage.getUserName()
        if(!userName){
        this.$router.replace('/login')
        return
-       }*/
+       } */
       this.userName = storage.getUserName()
     },
+    watch: {
+      '$route': {
+        handler (val) {
+          this.activeMenu = menu.activeMenu(val.path)
+        },
+        immediate: true
+      }
+    },
     methods: {
-      onTapMenu(path){
+      onTapMenu (path) {
         this.$router.push(path)
       },
-      onToggleHeader(name){
+      onToggleHeader (name) {
         if (name === '1') {
-          this.loginOut()
+          // this.loginOut()
         }
       },
-      onFoldMenus(){
+      onFoldMenus () {
         this.isFold = !this.isFold
-        console.log('2222')
       },
-      loginOut(){
+      loginOut () {
         loginApi.loginOut()
           .then(data => {
             storage.setUserName()
