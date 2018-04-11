@@ -4,7 +4,7 @@
 <script>
     import Emitter from '../../mixins/emitter';
     import { findComponentUpward } from '../../utils/assist';
-    const prefixCls = 'ivu-menu';
+    const prefixCls = 'j-menu';
     import mixin from './mixin';
 
     export default {

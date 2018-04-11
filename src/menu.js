@@ -3,14 +3,14 @@
  */
 const paths = [
   // -1为假设的特殊id，表示一级菜单,其余为带有子菜单
-  {id: '-1', urls: [{title: '菜单1', path: '/menu1', icon: 'arrow-graph-up-right'}]},
-  {id: '-1', urls: [{title: '菜单2', path: '/menu2', icon: 'fireball'}]},
-  {id: '-1', urls: [{title: '菜单3', path: '/menu3', icon: 'briefcase'}]},
-  {id: '-1', urls: [{title: '菜单4', path: '/menu4', icon: 'ios-list'}]},
+  {id: '-1', urls: [{title: '菜单1', path: '/menu1', icon: 'alert-circled'}]},
+  {id: '-1', urls: [{title: '菜单2', path: '/menu2', icon: 'alert-circled'}]},
+  {id: '-1', urls: [{title: '菜单3', path: '/menu3', icon: 'alert-circled'}]},
+  {id: '-1', urls: [{title: '菜单4', path: '/menu4', icon: 'alert-circled'}]},
   {
     id: '4',
     title: '菜单5',
-    icon: 'ios-list',
+    icon: 'alert-circled',
     urls: [{title: '配置', path: '/config'}]
   }
   // {

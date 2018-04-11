@@ -5,7 +5,7 @@
     import { oneOf, findComponentsDownward, findBrothersComponents } from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
-    const prefixCls = 'ivu-menu';
+    const prefixCls = 'j-menu';
 
     export default {
         name: 'Menu',

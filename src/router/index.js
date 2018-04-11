@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import iView from 'iview'
+import plugin from '../plugin'
 // import Util from '../util/myUtil'
 
 Vue.use(Router)
@@ -15,6 +15,15 @@ let routes = [
     path: '/',
     component: Admin,
     children: [
+      {
+        path: '',
+        name: 'index',
+        meta: {
+          title: '后台首页'
+        },
+        redirect: '/config',
+        component: Config
+      },
       {
         path: 'config',
         name: 'config',
@@ -38,14 +47,14 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  iView.LoadingBar.start()
-  // Util.title(to.meta.title);
+  plugin.LoadingBar.start()
+  // Util.title(to.meta.title);20*800
   // window.document.title=''
   next()
 })
 
 router.afterEach((to, from, next) => {
-  iView.LoadingBar.finish()
+  plugin.LoadingBar.finish()
   window.scrollTo(0, 0)
 })
 

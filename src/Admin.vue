@@ -96,27 +96,27 @@
 <template>
   <div class="layout">
     <div class="layout-menus" :class="{active:isFold}">
-      <Menu theme="dark" :active-name="activeMenu.activeName" :open-names="activeMenu.openNames" width="auto"
+      <j-menu theme="dark" :active-name="activeMenu.activeName" :open-names="activeMenu.openNames" width="auto"
             @on-select="onTapMenu" accordion>
-        <div class="layout-logo-left"><span v-show="!isFold">商家决策</span></div>
-        <template v-for="(item, index) in paths">
+        <!--<div class="layout-logo-left"><span v-show="!isFold">商家决策</span></div>-->
+        <div v-for="(item, index) in paths">
           <template v-if="item.id === '-1'">
-            <Menu-item :name="im.path" v-for="(im,idx) in item.urls" :key="idx">
-              <Icon :type="im.icon" :size="iconSize" :title="isFold?im.title:''"></Icon>
+            <j-menu-item :name="im.path" v-for="(im,idx) in item.urls" :key="idx">
+              <j-icon :type="im.icon" :size="iconSize" :title="isFold?im.title:''"></j-icon>
               <span v-show="!isFold">{{im.title}}</span>
-            </Menu-item>
+            </j-menu-item>
           </template>
           <template v-else>
-            <Submenu :name="item.id">
+            <j-sub-menu :name="item.id">
               <template slot="title">
-                <Icon :type="item.icon" :size="iconSize"></Icon>
+                <j-icon :type="item.icon" :size="iconSize"></j-icon>
                 {{item.title}}
               </template>
-              <Menu-item :name="im.path" v-for="(im, idx) in item.urls" :key="idx">{{im.title}}</Menu-item>
-            </Submenu>
+              <j-menu-item :name="im.path" v-for="(im, idx) in item.urls" :key="idx">{{im.title}}</j-menu-item>
+            </j-sub-menu>
           </template>
-        </template>
-      </Menu>
+        </div>
+      </j-menu>
     </div>
     <div class="layout-content" :class="{active:isFold}">
       <div class="layout-content-header">
@@ -129,13 +129,13 @@
                 @click.native="onFoldMenus"></Icon>-->
         </div>
         <div class="right">
-          <Dropdown placement="bottom-end" @on-click="onToggleHeader">
+          <!--<Dropdown placement="bottom-end" @on-click="onToggleHeader">
             <img class="user-header" :src="require('@assets/img/hot.jpg')" alt="商家头像">
             <DropdownMenu slot="list">
               <DropdownItem name="0">{{userName}}</DropdownItem>
               <DropdownItem name="1" divided>退出</DropdownItem>
             </DropdownMenu>
-          </Dropdown>
+          </Dropdown>-->
         </div>
       </div>
       <div class="layout-content-main">

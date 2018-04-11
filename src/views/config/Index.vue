@@ -1,8 +1,8 @@
 <template>
   <layout-main>
-    <Breadcrumb slot="navigator">
-      <Breadcrumb-item>设置</Breadcrumb-item>
-    </Breadcrumb>
+    <j-breadcrumb slot="navigator">
+      <j-breadcrumb-item>设置</j-breadcrumb-item>
+    </j-breadcrumb>
   </layout-main>
 </template>
 <style lang="less">

@@ -2,7 +2,7 @@
  * Created by xuwei on 2017/3/16.
  */
 import axios from 'axios'
-import iview from 'iview'
+// import iview from 'iview'
 const timeout = 8000
 
 // axios.defaults.baseURL = '/index.php/admin'
@@ -33,7 +33,7 @@ export default ({
           if (data.status.code === 403) {
             location.replace('/login')
           } else {
-            iview.Message.warning(data.status.msg)
+            // iview.Message.warning(data.status.msg)
           }
           reject()
         } else {
@@ -43,7 +43,7 @@ export default ({
         resolve(data)
       }
     }).catch(error => {
-      iview.Message.warning('网络异常，请重试...')
+      // iview.Message.warning('网络异常，请重试...')
       reject(error)
     })
   })

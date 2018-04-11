@@ -6,7 +6,7 @@
 </template>
 <script>
     import mixin from './mixin';
-    const prefixCls = 'ivu-menu';
+    const prefixCls = 'j-menu';
 
     export default {
         name: 'MenuGroup',
