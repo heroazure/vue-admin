@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "iview": "^2.13.0",
     "popper.js": "^1.14.3",
+    "swiper": "^4.2.2",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },

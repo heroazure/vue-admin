@@ -6,7 +6,7 @@ const paths = [
   {id: '-1', urls: [{title: '菜单1', path: '/menu1', icon: 'alert-circled'}]},
   {id: '-1', urls: [{title: '菜单2', path: '/menu2', icon: 'alert-circled'}]},
   {id: '-1', urls: [{title: '菜单3', path: '/menu3', icon: 'alert-circled'}]},
-  {id: '-1', urls: [{title: '菜单4', path: '/menu4', icon: 'alert-circled'}]},
+  {id: '-1', urls: [{title: '用户', path: '/user', icon: 'alert-circled'}]},
   {
     id: '4',
     title: '菜单5',

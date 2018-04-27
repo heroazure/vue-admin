@@ -10,6 +10,9 @@ let Admin = (resolve) => require(['../Admin.vue'], resolve)
 // 设置
 let Config = (resolve) => require(['@views/config/Index.vue'], resolve)
 
+// 用户
+let User = (resolve) => require(['@views/user/Index.vue'], resolve)
+
 let routes = [
   {
     path: '/',
@@ -28,9 +31,19 @@ let routes = [
         path: 'config',
         name: 'config',
         meta: {
-          title: '设置'
+          title: '设置',
+          keepAlive: false
         },
         component: Config
+      },
+      {
+        path: 'user',
+        name: 'user',
+        meta: {
+          title: '用户',
+          keepAlive: false
+        },
+        component: User
       }
     ]
   },

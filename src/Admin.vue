@@ -97,7 +97,7 @@
   <div class="layout">
     <div class="layout-menus" :class="{active:isFold}">
       <j-menu theme="dark" :active-name="activeMenu.activeName" :open-names="activeMenu.openNames" width="auto"
-            @on-select="onTapMenu" accordion>
+              @on-select="onTapMenu" accordion>
         <!--<div class="layout-logo-left"><span v-show="!isFold">商家决策</span></div>-->
         <div v-for="(item, index) in paths">
           <template v-if="item.id === '-1'">
@@ -182,6 +182,7 @@
       }
     },
     mounted () {
+      // console.log('admin')
       /* let userName=storage.getUserName()
        if(!userName){
        this.$router.replace('/login')
