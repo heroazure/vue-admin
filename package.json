@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "date-fns": "^1.29.0",
     "iview": "^2.13.0",
     "popper.js": "^1.14.3",
     "swiper": "^4.2.2",

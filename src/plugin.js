@@ -11,7 +11,10 @@ import Breadcrumb from '@components/iview/components/breadcrumb'
 // import Select from '@components/iview/components/select'
 import {Select, Option, OptionGroup} from '@components/iview/components/select'
 import {Row, Col} from '@components/iview/components/grid'
+import DatePicker from '@components/iview/components/date-picker'
+import Dropdown from '@components/iview/components/dropdown'
 import ImageGallery from '@components/image-gallery'
+import dateFixPicker from '@components/date-fix-picker'
 
 const jolly = {
   [InputItem.name]: InputItem,
@@ -29,7 +32,12 @@ const jolly = {
   'j-select': Select,
   'j-row': Row,
   'j-col': Col,
-  [Icon.name]: Icon
+  'j-date-picker': DatePicker,
+  'j-dropdown': Dropdown,
+  'j-dropdown-menu': Dropdown.Menu,
+  'j-dropdown-item': Dropdown.Item,
+  [Icon.name]: Icon,
+  [dateFixPicker.name]: dateFixPicker
 }
 
 const install = (Vue, opts = {}) => {

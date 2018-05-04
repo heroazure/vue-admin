@@ -4,7 +4,7 @@
       <j-breadcrumb-item>用户</j-breadcrumb-item>
     </j-breadcrumb>
     <!--<Select v-model="selected" @on-change="onChange">-->
-      <!--<Option v-for="item in opts" :value="item.value" :key="item.value">{{item.label}}</Option>-->
+    <!--<Option v-for="item in opts" :value="item.value" :key="item.value">{{item.label}}</Option>-->
     <!--</Select>-->
     <button type="button" @click="onTest">测试</button>
     <j-select v-model="selected" @on-change="onChange">
@@ -71,6 +71,7 @@
       <j-col span="8">col-8</j-col>
       <j-col span="8">col-8</j-col>
     </j-row>
+    <div style="padding-left: 200px;"><j-date-fix-picker></j-date-fix-picker></div>
   </layout-main>
 </template>
 <style lang="less">
