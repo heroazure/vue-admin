@@ -168,8 +168,8 @@
         paths: [
           {id: '-1', urls: ['/shopgeneral', '/goods', '/shop', '/message', '/customer', '/config']},// -1为假设的特殊id，表示一级菜单
           /*{id: '4', urls: ['/resourcecates', '/resource', '/coupon']},
-          {id: '5', urls: ['/order']},
-          {id: '6', urls: ['/feedback']}*/
+           {id: '5', urls: ['/order']},
+           {id: '6', urls: ['/feedback']}*/
         ],
         isFold: false
       }
@@ -189,17 +189,13 @@
         let obj = {}
         try {
           this.paths.forEach(item => {
-            try {
-              item.urls.forEach(im => {
-                if (path.indexOf(im) === 0) {
-                  obj.openNames = [item.id]
-                  obj.activeName = im
-                  throw new Error('break')
-                }
-              })
-            } catch (e) {
-              throw e
-            }
+            item.urls.forEach(im => {
+              if (path.indexOf(im) === 0) {
+                obj.openNames = [item.id]
+                obj.activeName = im
+                throw new Error('break')
+              }
+            })
           })
         } catch (e) {
         }
@@ -207,11 +203,11 @@
       }
     },
     mounted(){
-      /*let userName=storage.getUserName()
-       if(!userName){
-       this.$router.replace('/login')
-       return
-       }*/
+      let userName = storage.getUserName()
+      if (!userName) {
+        this.$router.replace('/login')
+        return
+      }
       this.userName = storage.getUserName()
     },
     methods: {
@@ -225,7 +221,6 @@
       },
       onFoldMenus(){
         this.isFold = !this.isFold
-        console.log('2222')
       },
       loginOut(){
         loginApi.loginOut()
