@@ -12,6 +12,7 @@
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
     "build": "node build/build.js",
+    "deploy": "pm2 start ./deploy.js -n deploy",
     "server": "pm2 start ./server.js -n vue-admin"
   },
   "dependencies": {
