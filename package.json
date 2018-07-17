@@ -11,7 +11,8 @@
   "scripts": {
     "dev": "node build/dev-server.js",
     "start": "npm run dev",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "server": "pm2 start ./server.js -n vue-admin"
   },
   "dependencies": {
     "axios": "^0.16.2",
