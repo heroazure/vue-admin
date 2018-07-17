@@ -97,7 +97,7 @@
     <div class="layout-menus" :class="{active:isFold}">
       <Menu theme="dark" :active-name="activeMenu.activeName" :open-names="activeMenu.openNames" width="auto"
             @on-select="onTapMenu" accordion>
-        <div class="layout-logo-left"><span v-show="!isFold">趣淘笔</span></div>
+        <div class="layout-logo-left"><span v-show="!isFold">趣淘笔22</span></div>
         <Menu-item name="/shopgeneral">
           <Icon type="arrow-graph-up-right" :size="iconSize" :title="isFold?'店铺概况':''"></Icon>
           <span v-show="!isFold">店铺概况</span>
